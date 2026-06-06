@@ -1,0 +1,104 @@
+:root {
+    --bg-color: #000000;       /* Tamamen siyah */
+    --text-color: #c9d1d9;
+    --prompt-color: #ff2a2a;   /* Saf Kırmızı Prompt */
+    --command-color: #50fa7b;  /* Terminal Yeşili Komutlar */
+    --error-color: #ff5555;
+    --font-main: 'JetBrains Mono', monospace;
+}
+
+html, body {
+    background-color: var(--bg-color) !important;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    color: var(--text-color);
+    font-family: var(--font-main);
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#terminal-container {
+width: 100%;
+text-align: left;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.prompt {
+    color: var(--prompt-color);
+    font-weight: bold;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+#terminal-input {
+background: transparent;
+border: none;
+color: var(--command-color);
+font-family: var(--font-main);
+font-size: 14px;
+flex: 1;
+outline: none;
+}
+
+.history-item {
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.error-text {
+    color: var(--error-color);
+}
+
+a {
+    color: #58a6ff; /* Linkler için temiz mavi */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- Neofetch Yan Yana Düzen --- */
+.fetch-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+    margin: 15px 0;
+}
+
+.fetch-logo {
+    color: #ff2a2a; /* Logonun tamamı saf kırmızı */
+    font-family: var(--font-main);
+    white-space: pre;
+    line-height: 1.1;
+}
+
+.fetch-info {
+    font-family: var(--font-main);
+    white-space: pre;
+}
+
+.color-palette {
+    display: flex;
+    gap: 0;
+    margin-top: 10px;
+}
+
+.color-block {
+    width: 40px;
+    height: 20px;
+}
