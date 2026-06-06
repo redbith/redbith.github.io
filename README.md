@@ -78,13 +78,6 @@ redbith.github.io/
 - Hard Aggressive Red (`#ff2a2a`) for prompt tokens and welcome logos
 - Terminal Green (`#50fa7b`) for verified input strings and successful outputs
 
-### Typography
-
-Strict dependency on:
-
-```text
-JetBrains Mono
-```
 
 to ensure flawless horizontal character alignment inside the ASCII and Braille render blocks.
 
