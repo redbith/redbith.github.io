@@ -4,8 +4,7 @@ An aggressive, minimalist, and hyper-realistic web terminal simulator acting as 
 
 ## Preview
 
-![Preview](./assets/demo.gif)
-
+[![ff} Preview](https://i.hizliresim.com/keyktrv.gif)](https://hizliresim.com/keyktrv)
 ## How It Works
 
 This simulator drops all standard front-end framework bloat—0% React, 0% Vue, and 0% external UI libraries—to achieve instantaneous rendering, custom terminal prompt bindings, and strict environment control.
