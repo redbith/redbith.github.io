@@ -1,122 +1,131 @@
 # redbith.github.io
 
-A terminal-inspired personal portfolio built for the browser.
-
-No frameworks. No unnecessary UI. Just a fast, interactive command-line experience that serves as a landing page, portfolio, and developer hub.
-
----
+An aggressive, minimalist, and hyper-realistic web terminal simulator acting as a personal command-center hub, landing page, and developer portfolio. Built from scratch to mimic a low-level Linux runtime environment inside a modern browser container.
 
 ## Preview
 
-![Demo](./assets/demo.gif)
+![Preview](./assets/demo.gif)
 
-> Replace with your own GIF or screenshot.
+## How It Works
 
----
+This simulator drops all standard front-end framework bloat—0% React, 0% Vue, and 0% external UI libraries—to achieve instantaneous rendering, custom terminal prompt bindings, and strict environment control.
+
+When a user lands on the page, the input vector is locked while a native script handles system initialization simulations. Once the environment is ready, control is handed over to a custom JavaScript multiplexer that reads input strings, logs command history, and routes execution tokens to internal web applets.
 
 ## Features
 
-### Boot Sequence
+### Systemd Boot Sequence Simulation
 
-A simulated Linux-style startup sequence runs when the page loads, displaying service initialization logs before handing control to the user.
+On page load, the interface streams an accurate sequence of core systemd initialization logs (including PipeWire Daemon, NetworkManager, Custom KVM Hypervisor hooks, and rpc-htop background helper routing) with randomized millisecond delays.
 
-### Interactive Terminal
+### True-to-Life Neofetch Engine
 
-Navigate the site through terminal commands instead of traditional UI elements.
+Executing the `neofetch` command clears the screen buffer and builds a rigid dual-column layout.
 
-Features include:
+The left column forces a pure red, perfectly aligned Braille ASCII art glyph matrix.
 
-* Command history navigation
-* Auto-scrolling output
-* Real-time command execution
-* Keyboard-first interaction
+The right column prints real-time runtime environment details:
 
-### GitHub Integration
+- OS
+- Kernel
+- Shell
+- Display
+- Memory
 
-The `ls` command fetches repositories directly from GitHub and displays them inside the terminal interface.
+followed by an exact 8-block color palette test matrix.
 
-### Custom Neofetch
+### Dynamic Asynchronous API Layer
 
-The `neofetch` command displays:
+The `ls` command natively talks to the GitHub API, executing an async/await fetch wrapper to map live public repositories, descriptions, and URLs into the file system array layout dynamically.
 
-* ASCII branding
-* Runtime information
-* Environment details
-* Terminal color palette
+### Native Input Handling
 
-### Minimal Architecture
+Implements custom event listeners for:
 
-Built with:
+- Command History array tracking
+- ArrowUp navigation
+- ArrowDown navigation
+- Auto-scrolling line streams
 
-* HTML
-* CSS
-* Vanilla JavaScript
+## Supported System Commands
 
-No React, Vue, build tools, or external UI frameworks.
+| Command | Description | Subsystem Processed |
+|----------|-------------|---------------------|
+| `help` | Evaluates and prints active terminal command layout | Internal Applet |
+| `whois` | Outputs personal developer profile detailing security research philosophy | Core Biography |
+| `ls` | Fetches and renders public code repositories in real-time | GitHub API Client |
+| `whoami` | Prints current session access verification token | Root Environment |
+| `neofetch` | Spawns custom system metrics and red Braille block layout | Neofetch Applet |
+| `social` | Lists confirmed contact points and external networks | Networking Stack |
+| `clear` | Flushes the current DOM layout tree of the terminal history | Buffer Reset |
+| `reboot` | Dispatches a full hardware window interface reload event | Kernel Simulation |
 
----
-
-## Commands
-
-| Command    | Description                  |
-| ---------- | ---------------------------- |
-| `help`     | Show available commands      |
-| `whois`    | Display information about me |
-| `whoami`   | Show current user            |
-| `ls`       | List public repositories     |
-| `neofetch` | Display system information   |
-| `social`   | Show contact links           |
-| `clear`    | Clear terminal output        |
-| `reboot`   | Reload the environment       |
-
----
-
-## Project Structure
+## Project Repository Structure
 
 ```text
 redbith.github.io/
-├── index.html
+├── index.html         # Core DOM layout and native prompt input container
 ├── css/
-│   └── style.css
+│   └── style.css      # JetBrains Mono font configuration & color variables
 └── js/
-    └── main.js
+    └── main.js        # Core multiplexer, systemd engine & applet router
 ```
 
----
+## Design Specifications
 
-## Running Locally
+### Color Variables
 
-Clone the repository:
+- Deep Absolute Black (`#000000`) background
+- Hard Aggressive Red (`#ff2a2a`) for prompt tokens and welcome logos
+- Terminal Green (`#50fa7b`) for verified input strings and successful outputs
+
+### Typography
+
+Strict dependency on:
+
+```text
+JetBrains Mono
+```
+
+to ensure flawless horizontal character alignment inside the ASCII and Braille render blocks.
+
+## Build & Local Deployment
+
+### Prerequisites
+
+Since this environment architecture is engineered with zero external compiler dependencies or asset bundlers, you only need a web browser or a basic local web server to test execution.
+
+### Quick Start
+
+Clone the repository locally:
 
 ```bash
 git clone https://github.com/redbith/redbith.github.io.git
 cd redbith.github.io
 ```
 
-Start a local server:
+Spin up a lightweight local server:
 
 ```bash
 python3 -m http.server 8080
 ```
 
-Open:
+Open your browser and navigate to:
 
 ```text
 http://localhost:8080
 ```
 
----
-
 ## Roadmap
 
-* [ ] Interactive htop-style monitor
-* [ ] Additional terminal applications
-* [ ] Expanded shell commands
-* [ ] Local file system simulation
-* [ ] Theme customization
+Future iterations of the simulator aim to implement:
 
----
+- [ ] Integration of an interactive, customized htop task monitoring widget interface
+- [ ] Execution of local file read simulation applets using custom mock data structures
+- [ ] Additional core shell environment configuration options
 
 ## License
 
-Released under the MIT License.
+This project is licensed under the MIT License.
+
+See the `LICENSE` file for details.
