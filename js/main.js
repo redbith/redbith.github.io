@@ -84,8 +84,10 @@ const commands = {
 
     'whois': () => `
     <b>redbithroot</b>: A cybersecurity and systems enthusiast from Azerbaijan.
-    He has already achieved multiple personal milestones under his own scope, yet everything done so far remains non-substantial to him as his vision is locked firmly on the absolute peak.
-    Operating under the weight of imposter syndrome, he converts inadequacy into pure, aggressive fuel to drive his technical evolution forward.
+    He has already achieved multiple personal milestones under his own scope, 
+    yet everything done so far remains non-substantial to him as his vision is locked firmly on the absolute peak.
+    Operating under the weight of imposter syndrome, he converts inadequacy into pure, 
+    aggressive fuel to drive his technical evolution forward.
     <i>"Complacency is a slow death; dissatisfaction is the only catalyst for absolute perfection."</i>`,
 
     'whoami': () => `You are the root.`,
