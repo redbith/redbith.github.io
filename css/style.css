@@ -1,13 +1,19 @@
 :root {
+    /* Tamamen Siyah */
     --bg-color: #000000;
-    --text-color: #c9d1d9;
+    --text-color: #dfdfdf;
+    
+    /* Saf Kırmızı Prompt */
     --prompt-color: #ff2a2a;
-    --command-color: #50fa7b;
+    
+    /* Terminal Komutları */
+    --command-color: #ff2a2a;
     --error-color: #ff5555;
-    --accent-color: #ff2a2a;
+    --accent-color: #bd93f9;
     --matrix-color: #ff2a2a;
     --font-main: 'JetBrains Mono', monospace;
 }
+
 html, body {
     background-color: var(--bg-color) !important;
     margin: 0;
@@ -16,33 +22,40 @@ html, body {
     min-height: 100vh;
     transition: background-color 0.4s ease;
 }
+
 body {
     color: var(--text-color);
     font-family: var(--font-main);
-    font-size: 14px;
-    line-height: 1.4;
+    overflow-x: hidden;
     padding: 20px;
     box-sizing: border-box;
 }
+
 #matrix-canvas {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 9999;
-    background: #000;
+    z-index: 1; /* Altta kalması için */
+    pointer-events: none;
 }
+
 #terminal-container {
+    position: relative;
+    z-index: 2; /* Yazıların matrix üstünde durması için */
     width: 100%;
     text-align: left;
+    display: flex;
+    flex-direction: column;
 }
+
 .input-line {
     display: flex;
     align-items: center;
     margin-top: 5px;
 }
+
 .prompt {
     color: var(--prompt-color);
     font-weight: bold;
@@ -50,55 +63,67 @@ body {
     white-space: nowrap;
     transition: color 0.4s ease;
 }
+
 #terminal-input {
     background: transparent;
     border: none;
     color: var(--command-color);
     font-family: var(--font-main);
-    font-size: 14px;
+    font-size: 16px;
     flex: 1;
+    padding: 0;
     outline: none;
     transition: color 0.4s ease;
 }
+
 .history-item {
     margin-bottom: 4px;
     white-space: pre-wrap;
     word-break: break-all;
 }
+
 .error-text {
     color: var(--error-color);
 }
+
 a {
-    color: #58a6ff;
+    color: #8be9fd;
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: underline;
 }
+
+/* Neofetch Düzeni */
 .fetch-container {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 30px;
+    gap: 35px;
     margin: 15px 0;
 }
+
 .fetch-logo {
-    color: var(--accent-color);
+    color: var(--prompt-color);
     font-family: var(--font-main);
     white-space: pre;
     line-height: 1.1;
     transition: color 0.4s ease;
 }
+
 .fetch-info {
     font-family: var(--font-main);
     white-space: pre;
 }
+
 .color-palette {
     display: flex;
-    gap: 0;
-    margin-top: 10px;
+    gap: 8px;
+    margin-top: 15px;
 }
+
 .color-block {
-    width: 40px;
+    width: 25px;
     height: 20px;
 }
