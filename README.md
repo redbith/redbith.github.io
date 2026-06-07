@@ -54,6 +54,7 @@ Implements custom event listeners for:
 | `ls` | Fetches and renders public code repositories in real-time | GitHub API Client |
 | `whoami` | Prints current session access verification token | Root Environment |
 | `redfetch` | Spawns custom system metrics and red Braille block layout | Neofetch Applet |
+| `cat` | Fetches and displays live GitHub repository metadata dynamically inside a structured terminal block. | GitHub API Client |
 | `social` | Lists confirmed contact points and external networks | Networking Stack |
 | `clear` | Flushes the current DOM layout tree of the terminal history | Buffer Reset |
 | `reboot` | Dispatches a full hardware window interface reload event | Kernel Simulation |
