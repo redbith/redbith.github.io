@@ -2,106 +2,106 @@ const terminalInput = document.getElementById('terminal-input');
 const terminalHistory = document.getElementById('terminal-history');
 const inputLine = document.querySelector('.input-line');
 const matrixCanvas = document.getElementById('matrix-canvas');
-const matrixCtx = matrixCanvas.getContext('2d');
+const matrixCtx = matrixCanvas ? matrixCanvas.getContext('2d') : null;
 
 const themes = {
     red: {
         '--bg-color': '#000000',
-        '--text-color': '#c9d1d9',
+        '--text-color': '#dfdfdf',
         '--prompt-color': '#ff2a2a',
-        '--command-color': '#50fa7b',
+        '--command-color': '#ff2a2a',
         '--error-color': '#ff5555',
-        '--accent-color': '#ff2a2a',
+        '--accent-color': '#bd93f9',
         '--matrix-color': '#ff2a2a',
         banner: '#ff2a2a',
         label: 'Red (Default)'
     },
     blue: {
         '--bg-color': '#000814',
-        '--text-color': '#caf0f8',
+        '--text-color': '#ccaef6',
         '--prompt-color': '#00b4d8',
-        '--command-color': '#90e0ef',
+        '--command-color': '#00b4d8',
         '--error-color': '#ef233c',
-        '--accent-color': '#00b4d8',
+        '--accent-color': '#9b5de5',
         '--matrix-color': '#00b4d8',
         banner: '#00b4d8',
         label: 'Blue'
     },
     green: {
-        '--bg-color': '#000000',
-        '--text-color': '#b7e4c7',
-        '--prompt-color': '#52b788',
-        '--command-color': '#74c69d',
+        '--bg-color': '#000b05',
+        '--text-color': '#bbf7d0',
+        '--prompt-color': '#4ade80',
+        '--command-color': '#4ade80',
         '--error-color': '#ef233c',
-        '--accent-color': '#52b788',
-        '--matrix-color': '#00ff41',
-        banner: '#52b788',
+        '--accent-color': '#facc15',
+        '--matrix-color': '#4ade80',
+        banner: '#4ade80',
         label: 'Green'
     },
     yellow: {
-        '--bg-color': '#0d0c00',
-        '--text-color': '#fffbe6',
-        '--prompt-color': '#ffd60a',
-        '--command-color': '#ffb703',
-        '--error-color': '#e63946',
-        '--accent-color': '#ffd60a',
-        '--matrix-color': '#ffd60a',
-        banner: '#ffd60a',
+        '--bg-color': '#0a0a00',
+        '--text-color': '#fffbeb',
+        '--prompt-color': '#facc15',
+        '--command-color': '#facc15',
+        '--error-color': '#ef233c',
+        '--accent-color': '#4ade80',
+        '--matrix-color': '#facc15',
+        banner: '#facc15',
         label: 'Yellow'
     },
     purple: {
-        '--bg-color': '#0d001a',
-        '--text-color': '#e0c3fc',
-        '--prompt-color': '#c77dff',
-        '--command-color': '#9d4edd',
-        '--error-color': '#ff6b6b',
-        '--accent-color': '#c77dff',
-        '--matrix-color': '#c77dff',
-        banner: '#c77dff',
+        '--bg-color': '#090014',
+        '--text-color': '#ede9fe',
+        '--prompt-color': '#a78bfa',
+        '--command-color': '#a78bfa',
+        '--error-color': '#ef233c',
+        '--accent-color': '#f472b6',
+        '--matrix-color': '#a78bfa',
+        banner: '#a78bfa',
         label: 'Purple'
     },
     white: {
-        '--bg-color': '#f8f9fa',
-        '--text-color': '#212529',
-        '--prompt-color': '#495057',
-        '--command-color': '#2d6a4f',
-        '--error-color': '#c0392b',
-        '--accent-color': '#495057',
-        '--matrix-color': '#adb5bd',
-        banner: '#495057',
+        '--bg-color': '#0f0f14',
+        '--text-color': '#f8f8f2',
+        '--prompt-color': '#e2e8f0',
+        '--command-color': '#e2e8f0',
+        '--error-color': '#ea580c',
+        '--accent-color': '#38bdf8',
+        '--matrix-color': '#cbd5e1',
+        banner: '#e2e8f0',
         label: 'White'
     },
     cyan: {
         '--bg-color': '#001219',
-        '--text-color': '#94d2bd',
-        '--prompt-color': '#0a9396',
-        '--command-color': '#e9d8a6',
-        '--error-color': '#ae2012',
-        '--accent-color': '#0a9396',
-        '--matrix-color': '#0a9396',
-        banner: '#0a9396',
+        '--text-color': '#e0f2fe',
+        '--prompt-color': '#22d3ee',
+        '--command-color': '#22d3ee',
+        '--error-color': '#ea580c',
+        '--accent-color': '#f472b6',
+        '--matrix-color': '#22d3ee',
+        banner: '#22d3ee',
         label: 'Cyan'
     },
     orange: {
-        '--bg-color': '#0d0500',
-        '--text-color': '#ffddd2',
-        '--prompt-color': '#ff6b35',
-        '--command-color': '#f7c59f',
-        '--error-color': '#e63946',
-        '--accent-color': '#ff6b35',
-        '--matrix-color': '#ff6b35',
-        banner: '#ff6b35',
+        '--bg-color': '#0f0800',
+        '--text-color': '#fff7ed',
+        '--prompt-color': '#fb923c',
+        '--command-color': '#fb923c',
+        '--error-color': '#ef233c',
+        '--accent-color': '#38bdf8',
+        '--matrix-color': '#fb923c',
+        banner: '#fb923c',
         label: 'Orange'
     },
     pink: {
-        '--bg-color': '#100010',
-        '--text-color': '#fce4ec',
-        '--prompt-color': '#f48fb1',
-        '--command-color': '#f06292',
-        '--error-color': '#ef5350',
-        '--accent-color': '#f48fb1',
-        '--matrix-color': '#f48fb1',
-        banner: '#f48fb1',
+        '--bg-color': '#14000b',
+        '--text-color': '#fce7f3',
+        '--prompt-color': '#f472b6',
+        '--command-color': '#f472b6',
+        '--error-color': '#ef233c',
+        '--accent-color': '#a78bfa',
+        '--matrix-color': '#f472b6',
+        banner: '#f472b6',
         label: 'Pink'
     }
 };
@@ -109,19 +109,24 @@ const themes = {
 let currentTheme = 'red';
 
 function applyTheme(name) {
-    const t = themes[name];
-    if (!t) return false;
+    if (!themes[name]) return false;
+    currentTheme = name;
     const root = document.documentElement;
-    Object.entries(t).forEach(([k, v]) => {
+    Object.entries(themes[name]).forEach(([k, v]) => {
         if (k.startsWith('--')) root.style.setProperty(k, v);
     });
-    currentTheme = name;
     return true;
 }
 
-function buildBanner(color) {
+function buildColorPalette() {
     return `
-<span style="color: ${color};">██████╗ ███████╗██████╗ ██████╗ ██╗████████╗██╗  ██╗
+    <div class="color-palette">
+    ${Object.keys(themes).map(t => `<div class="color-block" style="background: ${themes[t]['--prompt-color']};" title="${themes[t].label}"></div>`).join('')}
+    </div>`;
+}
+
+const getWelcomeBanner = () => `
+<span style="color: ${themes[currentTheme].banner};">██████╗ ███████╗██████╗ ██████╗ ██╗████████╗██╗  ██╗
 ██╔══██╗██╔════╝██╔══██╗██╔══██╗██║╚══██╔══╝██║  ██║
 ██████╔╝█████╗  ██║  ██║██████╔╝██║   ██║   ███████║
 ██╔══██╗██╔══╝  ██║  ██║██╔══██╗██║   ██║   ██╔══██║
@@ -131,10 +136,8 @@ function buildBanner(color) {
 Welcome back. Connection established successfully.
 Type '<span style="color: #50fa7b;">help</span>' to view the list of available commands.
 --------------------------------------------------`;
-}
 
-const welcomeBanner = buildBanner('#ff2a2a');
-
+// BURAYA KENDİ ORİJİNAL ASCII LOGONU YAPIŞTIR
 const repoLogo = `⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸
 ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -155,7 +158,7 @@ const repoLogo = `⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀�
 ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣇⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣤⣠⣤⡶⠀⢿⣿⣿⣿⣿⣿⣦⣄⣠⣴⠆⠀⠀⠀⠀⠀⠀⠀⠀
 ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⣿⠀⠀⠀⠀⠀⠀⠀⠀⣾⡿⠟⠛⠉⠀⠀⠁⠁⠉⠛⠿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⡿⠟⠛⠉⠀⠀⠁⠁⠉⠛⠿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠘⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⡛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -188,50 +191,47 @@ const bootLogs = [
 let commandHistory = [];
 let historyIndex = -1;
 let cachedRepos = [];
+let matrixInterval = null;
 
-let matrixAnimId = null;
-let matrixDrops = [];
-
+// --- CMatrix Sistem Yağmuru ---
 function initMatrix() {
-    matrixCanvas.width = window.innerWidth;
+    if (!matrixCanvas || !matrixCtx) return;
     matrixCanvas.height = window.innerHeight;
-    const cols = Math.floor(matrixCanvas.width / 14);
-    matrixDrops = Array(cols).fill(1);
-}
+    matrixCanvas.width = window.innerWidth;
 
-function drawMatrix() {
-    const color = getComputedStyle(document.documentElement).getPropertyValue('--matrix-color').trim() || '#ff2a2a';
-    matrixCtx.fillStyle = 'rgba(0,0,0,0.05)';
-    matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-    matrixCtx.fillStyle = color;
-    matrixCtx.font = '14px JetBrains Mono, monospace';
+    const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ";
+    const fontSize = 14;
+    const columns = matrixCanvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
 
-    const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF<>/\\|{}[]!@#$%^&*';
+    function draw() {
+        matrixCtx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+        matrixCtx.fillStyle = themes[currentTheme]['--matrix-color'];
+        matrixCtx.font = fontSize + "px monospace";
 
-    for (let i = 0; i < matrixDrops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        matrixCtx.fillText(char, i * 14, matrixDrops[i] * 14);
-        if (matrixDrops[i] * 14 > matrixCanvas.height && Math.random() > 0.975) {
-            matrixDrops[i] = 0;
+        for (let i = 0; i < drops.length; i++) {
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            matrixCtx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
         }
-        matrixDrops[i]++;
     }
+    
+    if (matrixInterval) clearInterval(matrixInterval);
+    matrixInterval = setInterval(draw, 35);
 }
 
-function startMatrix(duration) {
-    initMatrix();
-    matrixCanvas.style.display = 'block';
-    inputLine.style.display = 'none';
-    matrixAnimId = setInterval(drawMatrix, 33);
-
-    setTimeout(() => {
-        clearInterval(matrixAnimId);
-        matrixAnimId = null;
+function stopMatrix() {
+    if (matrixInterval) {
+        clearInterval(matrixInterval);
+        matrixInterval = null;
+    }
+    if (matrixCanvas && matrixCtx) {
         matrixCtx.clearRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-        matrixCanvas.style.display = 'none';
-        inputLine.style.display = 'flex';
-        terminalInput.focus();
-    }, duration);
+    }
 }
 
 const commands = {
@@ -241,14 +241,13 @@ const commands = {
     <span style="color: #50fa7b;">whois</span>           - Learn more about redbithroot.
     <span style="color: #50fa7b;">ls</span>              - Fetch list of current public repositories from GitHub.
     <span style="color: #50fa7b;">cat [project]</span>   - View basic metadata about a project.
+    <span style="color: #50fa7b;">theme [name]</span>    - Change terminal color palette.
+    <span style="color: #50fa7b;">cmatrix</span>         - Toggle matrix digital rain effect.
     <span style="color: #50fa7b;">whoami</span>          - Print current session user identity.
     <span style="color: #50fa7b;">redfetch</span>        - Clear terminal and display custom system statistics.
     <span style="color: #50fa7b;">reboot</span>          - Reload the terminal interface.
     <span style="color: #50fa7b;">clear</span>           - Clear display logs.
-    <span style="color: #50fa7b;">social</span>          - Display social network accounts and contact data.
-    <span style="color: #50fa7b;">cmatrix</span>         - Initiate Matrix rain sequence.
-    <span style="color: #50fa7b;">theme [name]</span>    - Change terminal color theme.
-                      Available: red, blue, green, yellow, purple, white, cyan, orange, pink`,
+    <span style="color: #50fa7b;">social</span>          - Display social network accounts and contact data.`,
 
     'whois': () => `
     <b>redbithroot</b>: A cybersecurity and systems enthusiast from Azerbaijan.
@@ -262,6 +261,7 @@ const commands = {
 
     'reboot': () => {
         printOutput("System rebooting...");
+        stopMatrix();
         setTimeout(() => { document.location.reload(true); }, 500);
         return null;
     },
@@ -271,39 +271,32 @@ const commands = {
         return null;
     },
 
+    'theme': (args) => {
+        if (!args || args.length === 0) {
+            return `Available themes: <span style="color: #8be9fd;">${Object.keys(themes).join(', ')}</span><br>Usage: theme [theme_name]`;
+        }
+        const success = applyTheme(args[0].toLowerCase());
+        if (success) {
+            if (matrixInterval) initMatrix();
+            return `Theme changed to <span style="color: var(--prompt-color); font-weight: bold;">${args[0]}</span> successfully.`;
+        }
+        return `<span class="error-text">Theme '${args[0]}' not found.</span>`;
+    },
+
+    'cmatrix': () => {
+        if (matrixInterval) {
+            stopMatrix();
+            return "Matrix animation stopped.";
+        } else {
+            if (!matrixCanvas) return "<span class='error-text'>Error: Matrix canvas missing.</span>";
+            initMatrix();
+            return "Matrix animation initiated. Type 'cmatrix' to stop.";
+        }
+    },
+
     'social': () => `
     Instagram : <a href="https://instagram.com/redbithroot" target="_blank">@redbithroot</a>
     Gmail     : <a href="mailto:scriptpy777@gmail.com">scriptpy777@gmail.com</a>`,
-
-    'cmatrix': () => {
-        printOutput(`<span style="color: var(--accent-color);">Initiating Matrix rain... (5 seconds)</span>`);
-        setTimeout(() => startMatrix(5000), 300);
-        return null;
-    },
-
-    'theme': (args) => {
-        if (!args || args.length === 0) {
-            const list = Object.entries(themes)
-                .map(([k, v]) => `    <span style="color: ${v.accent || v['--accent-color']};">  ${k.padEnd(10)}</span> ${v.label}`)
-                .join('\n');
-            return `\n    Usage: theme [name]\n    Available themes:\n\n${list}\n\n    Current theme: <span style="color: var(--accent-color);">${currentTheme}</span>`;
-        }
-
-        const name = args[0].toLowerCase();
-        if (!themes[name]) {
-            return `<span class="error-text">theme: '${name}' not found. Type 'theme' for list.</span>`;
-        }
-
-        applyTheme(name);
-
-        const t = themes[name];
-        const accentColor = t['--accent-color'];
-        const promptEl = document.querySelector('.prompt');
-        if (promptEl) promptEl.style.color = accentColor;
-
-        printOutput(`<span style="color: ${accentColor};">Theme switched to '${name}'. Terminal colors updated.</span>`);
-        return null;
-    },
 
     'ls': async () => {
         printOutput("<span style='color: #8be9fd;'>Fetching repository layout from GitHub API...</span>");
@@ -311,53 +304,40 @@ const commands = {
             const response = await fetch('https://api.github.com/users/redbith/repos');
             if (!response.ok) throw new Error();
             cachedRepos = await response.json();
-
+            
             if (cachedRepos.length === 0) return "No public repositories found.";
 
-            let output = "<br><span style='color: var(--accent-color); font-weight: bold;'>[ Public Repositories ]</span><br>";
+            let output = "<br><span style='color: var(--prompt-color); font-weight: bold;'>[ Public Repositories ]</span><br>";
             cachedRepos.forEach(repo => {
-                const desc = repo.description ? repo.description : "No description provided.";
-                output += `📁 <a href="${repo.html_url}" target="_blank" style="color: #50fa7b; font-weight: bold;">${repo.name}</a> - <span style="color: #c9d1d9;">${desc}</span><br>`;
+                output += `📁 <a href="${repo.html_url}" target="_blank" style="color: #50fa7b; font-weight: bold;">${repo.name}</a> - <span style="color: var(--text-color);">${repo.description || "No description provided."}</span><br>`;
             });
-            output += `<br><span style="color: #c9d1d9; font-size: 12px;">Tip: Use 'cat [project]' for metadata.</span>`;
             return output;
         } catch (err) {
-            return `<span class="error-text">Error fetching repositories: Check configuration or profile status.</span>`;
+            return `<span class="error-text">Error fetching repositories.</span>`;
         }
     },
 
     'cat': async (args) => {
-        if (!args || args.length === 0) {
-            return `<span class="error-text">Usage: cat [project_name]</span>`;
-        }
-
+        if (!args || args.length === 0) return `<span class="error-text">Usage: cat [project_name]</span>`;
         const repoName = args[0].toLowerCase();
 
         if (cachedRepos.length === 0) {
-            printOutput("<span style='color: #8be9fd;'>Fetching project data...</span>");
             try {
                 const response = await fetch('https://api.github.com/users/redbith/repos');
-                if (!response.ok) throw new Error();
                 cachedRepos = await response.json();
-            } catch (err) {
-                return `<span class="error-text">Error: Could not fetch project data.</span>`;
-            }
+            } catch (err) { return `<span class="error-text">Error fetching project data.</span>`; }
         }
 
         const repo = cachedRepos.find(r => r.name.toLowerCase() === repoName);
-
-        if (!repo) {
-            return `<span class="error-text">cat: ${repoName}: Project not found.</span>`;
-        }
+        if (!repo) return `<span class="error-text">cat: ${repoName}: Project not found.</span>`;
 
         return `
-<div style="border: 1px solid var(--accent-color); padding: 10px; margin: 10px 0; background: rgba(0,0,0,0.2); font-family: 'JetBrains Mono', monospace;">
-<span style="color: var(--accent-color); font-weight: bold;">PROJECT: ${repo.name}</span>
+<div style="border: 1px solid var(--prompt-color); padding: 10px; margin: 10px 0; background: rgba(255, 42, 42, 0.05);">
+<span style="color: var(--prompt-color); font-weight: bold;">PROJECT: ${repo.name}</span>
 --------------------------------------------------
-<span style="color: #bd93f9; font-weight: bold;">Description:</span> ${repo.description || 'No description provided.'}
+<span style="color: #bd93f9; font-weight: bold;">Description:</span> ${repo.description || 'No description.'}
 <span style="color: #bd93f9; font-weight: bold;">Language:</span> ${repo.language || 'Unknown'}
 <span style="color: #bd93f9; font-weight: bold;">Stars:</span> ⭐ ${repo.stargazers_count}
-<span style="color: #bd93f9; font-weight: bold;">Forks:</span> 🍴 ${repo.forks_count}
 <span style="color: #bd93f9; font-weight: bold;">URL:</span> <a href="${repo.html_url}" target="_blank" style="color: #50fa7b;">${repo.html_url}</a>
 --------------------------------------------------
 </div>`;
@@ -365,7 +345,6 @@ const commands = {
 
     'redfetch': () => {
         terminalHistory.innerHTML = '';
-
         const now = new Date();
         const timeString = now.toTimeString().split(' ')[0];
         const dateString = now.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
@@ -380,41 +359,29 @@ const commands = {
         const infoDiv = document.createElement('div');
         infoDiv.className = 'fetch-info';
         infoDiv.innerHTML = `
-        <span style="color: var(--accent-color); font-weight: bold;">redbith</span>@<span style="color: var(--accent-color); font-weight: bold;">github.com</span>
+        <span style="color: var(--prompt-color); font-weight: bold;">redbith</span>@<span style="color: var(--prompt-color); font-weight: bold;">github.com</span>
         -------------------------
         <span style="color: #ffffff; font-weight: bold;">OS</span>: EndeavourOS x86_64 (Custom Web Simulation)
         <span style="color: #ffffff; font-weight: bold;">Host</span>: GitHub Pages Cloud Host Engine
         <span style="color: #ffffff; font-weight: bold;">Kernel</span>: Linux 7.0.10-zen1-1-zen (Simulation Mode)
         <span style="color: #ffffff; font-weight: bold;">Uptime</span>: ${Math.floor(performance.now() / 60 / 1000)} mins
         <span style="color: #ffffff; font-weight: bold;">Shell</span>: fish 4.7.1 (redbith-sh)
-        <span style="color: #ffffff; font-weight: bold;">Display</span>: ${window.screen.width}x${window.screen.height}
         <span style="color: #ffffff; font-weight: bold;">Terminal</span>: kitty 0.46.2
-        <span style="color: #ffffff; font-weight: bold;">Terminal Font</span>: JetBrainsMonoNF-Regular (11pt)
         <span style="color: #ffffff; font-weight: bold;">CPU</span>: Simulated Core System (4) @ 4.10 GHz
-        <span style="color: #ffffff; font-weight: bold;">Memory</span>: 3.54 GiB / 7.49 GiB (<span style="color: var(--command-color);">47%</span>)
+        <span style="color: #ffffff; font-weight: bold;">Memory</span>: 3.54 GiB / 7.49 GiB (<span style="color: #50fa7b;">47%</span>)
         <span style="color: #ffffff; font-weight: bold;">Local Time</span>: ${dateString} ${timeString}
-        <span style="color: #ffffff; font-weight: bold;">Status</span>: Aggr-Mode / Active
-
-        <div class="color-palette">
-        <div class="color-block" style="background: #282a36;"></div>
-        <div class="color-block" style="background: #ff5555;"></div>
-        <div class="color-block" style="background: #50fa7b;"></div>
-        <div class="color-block" style="background: #f1fa8c;"></div>
-        <div class="color-block" style="background: #bd93f9;"></div>
-        <div class="color-block" style="background: #ff79c6;"></div>
-        <div class="color-block" style="background: #8be9fd;"></div>
-        <div class="color-block" style="background: #f8f8f2;"></div>
-        </div>
+        
+        ${buildColorPalette()}
         `;
 
         container.appendChild(logoDiv);
         container.appendChild(infoDiv);
         terminalHistory.appendChild(container);
-
         return null;
     }
 };
 
+// --- Boot Animasyonu ---
 function startBootSequence() {
     inputLine.style.display = 'none';
     let logIndex = 0;
@@ -441,7 +408,7 @@ function startBootSequence() {
         } else {
             setTimeout(() => {
                 terminalHistory.innerHTML = '';
-                printOutput(welcomeBanner);
+                printOutput(getWelcomeBanner());
                 inputLine.style.display = 'flex';
                 terminalInput.focus();
                 window.scrollTo(0, 0);
@@ -454,6 +421,15 @@ function startBootSequence() {
 
 startBootSequence();
 document.addEventListener('click', () => terminalInput.focus());
+
+if (matrixCanvas) {
+    window.addEventListener('resize', () => {
+        if (matrixInterval) {
+            matrixCanvas.height = window.innerHeight;
+            matrixCanvas.width = window.innerWidth;
+        }
+    });
+}
 
 terminalInput.addEventListener('keydown', async function(e) {
     if (e.key === 'Enter') {
