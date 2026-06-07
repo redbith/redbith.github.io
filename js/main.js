@@ -15,7 +15,6 @@ Welcome back. Connection established successfully.
 Type '<span style="color: #50fa7b;">help</span>' to view the list of available commands.
 --------------------------------------------------`;
 
-// yeniart.txt içeriği - Bozuk metinler temizlendi, kaçış karakterleri tamir edildi
 const repoLogo = `⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸
 ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -42,33 +41,33 @@ const repoLogo = `⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀�
 ⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
 
-// Gerçekçi Systemd Boot Servisleri Listesi
 const bootLogs = [
     { text: ":: initiating initramfs v0.7-3...", type: "info" },
-{ text: "Starting Journal Service...", type: "service" },
-{ text: "Starting Load Kernel Modules...", type: "service" },
-{ text: "Mounted /sys/kernel/config...", type: "info" },
-{ text: "Starting Remount Root and Kernel File Systems...", type: "service" },
-{ text: "Starting Coldplug All Udev Devices...", type: "service" },
-{ text: "Starting Create Static Device Nodes in /dev...", type: "service" },
-{ text: "Starting Accounts Service...", type: "service" },
-{ text: "Starting Local Network Name Resolution...", type: "service" },
-{ text: "Starting Network Time Synchronization...", type: "service" },
-{ text: "Reached target System Initialization.", type: "target" },
-{ text: "Starting Network Manager...", type: "service" },
-{ text: "Starting Sound Service (PipeWire Daemon)...", type: "service" },
-{ text: "Starting OpenSSH Daemon...", type: "service" },
-{ text: "Starting Permit User Sessions...", type: "service" },
-{ text: "Starting rpc-htop background helper...", type: "service" },
-{ text: "Starting Custom KVM/Virt-Manager Hypervisor Hook...", type: "service" },
-{ text: "Starting Simple Desktop Display Manager (SDDM)...", type: "service" },
-{ text: "Loading KWin Wayland Compositor...", type: "info" },
-{ text: "Reached target Multi-User System.", type: "target" },
-{ text: "Reached target Graphical Interface.", type: "target" }
+    { text: "Starting Journal Service...", type: "service" },
+    { text: "Starting Load Kernel Modules...", type: "service" },
+    { text: "Mounted /sys/kernel/config...", type: "info" },
+    { text: "Starting Remount Root and Kernel File Systems...", type: "service" },
+    { text: "Starting Coldplug All Udev Devices...", type: "service" },
+    { text: "Starting Create Static Device Nodes in /dev...", type: "service" },
+    { text: "Starting Accounts Service...", type: "service" },
+    { text: "Starting Local Network Name Resolution...", type: "service" },
+    { text: "Starting Network Time Synchronization...", type: "service" },
+    { text: "Reached target System Initialization.", type: "target" },
+    { text: "Starting Network Manager...", type: "service" },
+    { text: "Starting Sound Service (PipeWire Daemon)...", type: "service" },
+    { text: "Starting OpenSSH Daemon...", type: "service" },
+    { text: "Starting Permit User Sessions...", type: "service" },
+    { text: "Starting rpc-htop background helper...", type: "service" },
+    { text: "Starting Custom KVM/Virt-Manager Hypervisor Hook...", type: "service" },
+    { text: "Starting Simple Desktop Display Manager (SDDM)...", type: "service" },
+    { text: "Loading KWin Wayland Compositor...", type: "info" },
+    { text: "Reached target Multi-User System.", type: "target" },
+    { text: "Reached target Graphical Interface.", type: "target" }
 ];
 
 let commandHistory = [];
 let historyIndex = -1;
+let cachedRepos = [];
 
 const commands = {
     'help': () => `
@@ -112,14 +111,16 @@ const commands = {
         try {
             const response = await fetch('https://api.github.com/users/redbith/repos');
             if (!response.ok) throw new Error();
-            const repos = await response.json();
-            if (repos.length === 0) return "No public repositories found.";
+            cachedRepos = await response.json();
+            
+            if (cachedRepos.length === 0) return "No public repositories found.";
 
             let output = "<br><span style='color: #ff2a2a; font-weight: bold;'>[ Public Repositories ]</span><br>";
-            repos.forEach(repo => {
+            cachedRepos.forEach(repo => {
                 const desc = repo.description ? repo.description : "No description provided.";
                 output += `📁 <a href="${repo.html_url}" target="_blank" style="color: #50fa7b; font-weight: bold;">${repo.name}</a> - <span style="color: #c9d1d9;">${desc}</span><br>`;
             });
+            output += `<br><span style="color: #c9d1d9; font-size: 12px;">Tip: Use 'cat [project]' for metadata.</span>`;
             return output;
         } catch (err) {
             return `<span class="error-text">Error fetching repositories: Check configuration or profile status.</span>`;
@@ -229,12 +230,15 @@ terminalInput.addEventListener('keydown', async function(e) {
 
         printOutput(`<span class="prompt">redbith@bohb-wax9 ~ $</span> <span style="color: var(--command-color);">${inputVal}</span>`);
 
-        const cmd = inputVal.toLowerCase();
+        const parts = inputVal.split(/\s+/);
+        const cmd = parts[0].toLowerCase();
+        const args = parts.slice(1);
+
         if (commands[cmd]) {
-            const result = await commands[cmd]();
+            const result = await commands[cmd](args);
             if (result !== null) printOutput(result);
         } else {
-            printOutput(`<span class="error-text">Error: Command '${inputVal}' not found. Type 'help' for layout.</span>`);
+            printOutput(`<span class="error-text">Error: Command '${cmd}' not found. Type 'help' for layout.</span>`);
         }
 
         this.value = '';
