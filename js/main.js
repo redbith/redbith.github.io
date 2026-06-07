@@ -77,7 +77,7 @@ const commands = {
     <span style="color: #50fa7b;">whois</span>    - Learn more about redbithroot.
     <span style="color: #50fa7b;">ls</span>       - Fetch list of current public repositories from GitHub.
     <span style="color: #50fa7b;">whoami</span>   - Print current session user identity.
-    <span style="color: #50fa7b;">neofetch</span> - Clear terminal and display custom system statistics.
+    <span style="color: #50fa7b;">redfetch</span> - Clear terminal and display custom system statistics.
     <span style="color: #50fa7b;">reboot</span>   - Reload the terminal interface.
     <span style="color: #50fa7b;">clear</span>    - Clear display logs.
     <span style="color: #50fa7b;">social</span>   - Display social network accounts and contact data.`,
@@ -126,7 +126,7 @@ const commands = {
         }
     },
 
-    'neofetch': () => {
+    'redfetch': () => {
         terminalHistory.innerHTML = '';
 
         const now = new Date();
