@@ -16,9 +16,9 @@ When a user lands on the page, the input vector is locked while a native script 
 
 On page load, the interface streams an accurate sequence of core systemd initialization logs (including PipeWire Daemon, NetworkManager, Custom KVM Hypervisor hooks, and rpc-htop background helper routing) with randomized millisecond delays.
 
-### True-to-Life Neofetch Engine
+### True-to-Life Redfetch Engine
 
-Executing the `neofetch` command clears the screen buffer and builds a rigid dual-column layout.
+Executing the `redfetch` command clears the screen buffer and builds a rigid dual-column layout.
 
 The left column forces a pure red, perfectly aligned Braille ASCII art glyph matrix.
 
@@ -53,7 +53,7 @@ Implements custom event listeners for:
 | `whois` | Outputs personal developer profile detailing security research philosophy | Core Biography |
 | `ls` | Fetches and renders public code repositories in real-time | GitHub API Client |
 | `whoami` | Prints current session access verification token | Root Environment |
-| `neofetch` | Spawns custom system metrics and red Braille block layout | Neofetch Applet |
+| `redfetch` | Spawns custom system metrics and red Braille block layout | Neofetch Applet |
 | `social` | Lists confirmed contact points and external networks | Networking Stack |
 | `clear` | Flushes the current DOM layout tree of the terminal history | Buffer Reset |
 | `reboot` | Dispatches a full hardware window interface reload event | Kernel Simulation |

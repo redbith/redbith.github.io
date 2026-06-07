@@ -72,15 +72,14 @@ let cachedRepos = [];
 const commands = {
     'help': () => `
     Available Commands:
-    <span style="color: #50fa7b;">help</span>             - Display available commands.
-    <span style="color: #50fa7b;">whois</span>            - Learn more about redbithroot.
-    <span style="color: #50fa7b;">ls</span>               - Fetch list of current public repositories from GitHub.
-    <span style="color: #50fa7b;">cat [project]</span>    - View basic metadata about a project.
-    <span style="color: #50fa7b;">whoami</span>           - Print current session user identity.
-    <span style="color: #50fa7b;">neofetch</span>         - Clear terminal and display custom system statistics.
-    <span style="color: #50fa7b;">reboot</span>           - Reload the terminal interface.
-    <span style="color: #50fa7b;">clear</span>            - Clear display logs.
-    <span style="color: #50fa7b;">social</span>           - Display social network accounts and contact data.`,
+    <span style="color: #50fa7b;">help</span>     - Display available commands.
+    <span style="color: #50fa7b;">whois</span>    - Learn more about redbithroot.
+    <span style="color: #50fa7b;">ls</span>       - Fetch list of current public repositories from GitHub.
+    <span style="color: #50fa7b;">whoami</span>   - Print current session user identity.
+    <span style="color: #50fa7b;">redfetch</span> - Clear terminal and display custom system statistics.
+    <span style="color: #50fa7b;">reboot</span>   - Reload the terminal interface.
+    <span style="color: #50fa7b;">clear</span>    - Clear display logs.
+    <span style="color: #50fa7b;">social</span>   - Display social network accounts and contact data.`,
 
     'whois': () => `
     <b>redbithroot</b>: A cybersecurity and systems enthusiast from Azerbaijan.
@@ -128,44 +127,7 @@ const commands = {
         }
     },
 
-    'cat': async (args) => {
-        if (!args || args.length === 0) {
-            return `<span class="error-text">Usage: cat [project_name]</span>`;
-        }
-
-        const repoName = args[0].toLowerCase();
-
-        if (cachedRepos.length === 0) {
-            printOutput("<span style='color: #8be9fd;'>Fetching project data...</span>");
-            try {
-                const response = await fetch('https://api.github.com/users/redbith/repos');
-                if (!response.ok) throw new Error();
-                cachedRepos = await response.json();
-            } catch (err) {
-                return `<span class="error-text">Error: Could not fetch project data.</span>`;
-            }
-        }
-
-        const repo = cachedRepos.find(r => r.name.toLowerCase() === repoName);
-
-        if (!repo) {
-            return `<span class="error-text">cat: ${repoName}: Project not found.</span>`;
-        }
-
-        return `
-<div style="border: 1px solid #ff2a2a; padding: 10px; margin: 10px 0; background: rgba(255, 42, 42, 0.05);">
-<span style="color: #ff2a2a; font-weight: bold;">PROJECT: ${repo.name}</span>
---------------------------------------------------
-<span style="color: #bd93f9; font-weight: bold;">Description:</span> ${repo.description || 'No description provided.'}
-<span style="color: #bd93f9; font-weight: bold;">Language:</span> ${repo.language || 'Unknown'}
-<span style="color: #bd93f9; font-weight: bold;">Stars:</span> ⭐ ${repo.stargazers_count}
-<span style="color: #bd93f9; font-weight: bold;">Forks:</span> 🍴 ${repo.forks_count}
-<span style="color: #bd93f9; font-weight: bold;">URL:</span> <a href="${repo.html_url}" target="_blank">${repo.html_url}</a>
---------------------------------------------------
-</div>`;
-    },
-
-    'neofetch': () => {
+    'redfetch': () => {
         terminalHistory.innerHTML = '';
 
         const now = new Date();
