@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Redbith — Namiq Bağırzadə | Security Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{color-scheme:dark;--bg:#07090d;--card:#0d1117;--line:#1c232d;--tx:#e6edf3;--mu:#8b98a8;--ac:#39ff88;--rd:#ff3b4e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--tx);font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+#matrix{position:fixed;inset:0;z-index:-1;opacity:.18}
+.glow{text-shadow:0 0 24px rgba(57,255,136,.45)}
+.card{background:linear-gradient(180deg,rgba(13,17,23,.92),rgba(10,13,18,.92));border:1px solid var(--line);border-radius:14px;transition:.3s}
+.card:hover{border-color:rgba(57,255,136,.45);transform:translateY(-4px);box-shadow:0 12px 40px -12px rgba(57,255,136,.25)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1rem;border:1px solid var(--line);border-radius:10px;background:#0d1117;font-size:.875rem;transition:.25s}
+.btn:hover{border-color:var(--ac);color:var(--ac);box-shadow:0 0 18px rgba(57,255,136,.2)}
+.btn-p{background:var(--ac);color:#04110a;border-color:var(--ac);font-weight:600}
+.btn-p:hover{color:#04110a;box-shadow:0 0 28px rgba(57,255,136,.55)}
+.rev{opacity:0;transform:translateY(24px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+.rev.in{opacity:1;transform:none}
+.cursor{display:inline-block;width:.55ch;background:var(--ac);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.frame{position:relative;aspect-ratio:1;border-radius:20px;background:radial-gradient(circle at 30% 20%,#12301f,#0b0f14 70%);border:1px solid rgba(57,255,136,.35);overflow:hidden}
+.frame::after{content:"";position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--ac),transparent);animation:scan 3.5s linear infinite}
+@keyframes scan{0%{top:-2px}100%{top:100%}}
+.tag{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
+.sec{padding:5.5rem 0}
+.tl{border-left:1px dashed #2a3442}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rev{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md" style="background:rgba(7,9,13,.75);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)">
+  <div class="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
+    <a href="#top" class="mono font-bold" style="color:var(--ac)">~/redbith<span class="cursor">&nbsp;</span></a>
+    <nav class="hidden sm:flex gap-6 text-sm mono" style="color:var(--mu)">
+      <a href="#haqqimda" class="hover:text-white">about</a>
+      <a href="#ugurlar" class="hover:text-white">achievements</a>
+      <a href="#yol" class="hover:text-white">timeline</a>
+      <a href="#elaqe" class="hover:text-white">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="min-h-screen flex items-center pt-20 pb-10">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-5 gap-10 items-center w-full">
+    <div class="md:col-span-3">
+      <p class="mono text-sm mb-4" style="color:var(--ac)">&gt; hello, world_</p>
+      <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">Namiq <span class="glow" style="color:var(--ac)">Bağırzadə</span></h1>
+      <p class="mono text-lg sm:text-2xl mt-4" style="color:var(--mu)"><span id="typed"></span><span class="cursor">&nbsp;</span></p>
+      <p class="mt-6 max-w-xl leading-relaxed" style="color:#b7c2cf">I’m Redbith, a young security researcher who hunts for vulnerabilities. I found a local privilege escalation in Pardus Software Center and took <b class="text-white">2nd place</b> at TEKNOFEST 2025. Today I have <b style="color:var(--ac)">two published CVEs</b>, the latest being <b style="color:var(--ac)">CVE-2026-16478</b> (CVSS 7.0, High).</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#ugurlar" class="btn btn-p">See my work →</a>
+        <a data-s="github" target="_blank" rel="noopener" class="btn"><svg class="w-4 h-4"><use href="#i-gh"/></svg>GitHub</a>
+        <a data-s="x" target="_blank" rel="noopener" class="btn"><svg class="w-4 h-4"><use href="#i-x"/></svg>X</a>
+        <a data-s="ig" target="_blank" rel="noopener" class="btn"><svg class="w-4 h-4"><use href="#i-ig"/></svg>Instagram</a>
+      </div>
+    </div>
+    <div class="md:col-span-2 max-w-sm w-full mx-auto">
+      <div class="frame flex items-center justify-center">
+        <!-- Şəkil üçün: aşağıdakı div əvəzinə <img src="data:image/..."> qoyun -->
+        <div class="text-center">
+          <div class="mono font-extrabold text-7xl glow" style="color:var(--ac)">R</div>
+          <div class="mono tag mt-2" style="color:var(--mu)">profile photo here</div>
+        </div>
+        <div class="absolute top-3 left-3 mono tag" style="color:var(--ac)">● online</div>
+        <div class="absolute bottom-3 right-3 mono tag" style="color:var(--mu)">id=redbith</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="max-w-6xl mx-auto px-5">
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 rev">
+    <div class="card p-5"><div class="mono text-3xl font-bold" style="color:var(--ac)" data-n="2">0</div><div class="text-xs mt-1" style="color:var(--mu)">Published CVEs</div></div>
+    <div class="card p-5"><div class="mono text-3xl font-bold" style="color:var(--ac)" data-n="2" data-pre="#">0</div><div class="text-xs mt-1" style="color:var(--mu)">TEKNOFEST 2025 place</div></div>
+    <div class="card p-5"><div class="mono text-3xl font-bold" style="color:var(--ac)" data-n="7" data-dec="1">0</div><div class="text-xs mt-1" style="color:var(--mu)">Highest CVSS score</div></div>
+    <div class="card p-5"><div class="mono text-3xl font-bold" style="color:var(--ac)" data-n="3">0</div><div class="text-xs mt-1" style="color:var(--mu)">Pardus products with findings</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="haqqimda" class="sec">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-8 items-start">
+    <div class="rev">
+      <p class="mono text-sm" style="color:var(--ac)">01 // about</p>
+      <h2 class="text-3xl font-bold mt-2">I look for the gaps behind the code</h2>
+      <p class="mt-5 leading-relaxed" style="color:#b7c2cf">At 14, I found a privilege escalation flaw in Pardus Software Center. Back then I didn’t think about CVEs. I learned the lesson: in 2026 I reported every finding properly and got it officially recorded.</p>
+      <p class="mt-4 leading-relaxed" style="color:#b7c2cf">My goal is to make open-source and national software safer, to disclose what I find responsibly, and to share what I learn along the way.</p>
+    </div>
+    <div class="card p-5 mono text-sm rev" style="background:#05070a">
+      <div class="flex gap-1.5 mb-4"><i class="w-3 h-3 rounded-full" style="background:#ff5f57"></i><i class="w-3 h-3 rounded-full" style="background:#febc2e"></i><i class="w-3 h-3 rounded-full" style="background:#28c840"></i></div>
+      <p><span style="color:var(--ac)">redbith@kali</span>:~$ whoami</p>
+      <p style="color:var(--mu)">namiq — vulnerability researcher</p>
+      <p class="mt-2"><span style="color:var(--ac)">redbith@kali</span>:~$ cat focus.txt</p>
+      <p style="color:var(--mu)">Linux · LPE · Pardus · Pentest · CVE</p>
+      <p class="mt-2"><span style="color:var(--ac)">redbith@kali</span>:~$ cve --list</p>
+      <p style="color:var(--mu)">CVE-2026-16478 &nbsp;HIGH 7.0<br>CVE-2026-15599 &nbsp;LOW 3.3</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="ugurlar" class="sec">
+  <div class="max-w-6xl mx-auto px-5">
+    <p class="mono text-sm rev" style="color:var(--ac)">02 // achievements</p>
+    <h2 class="text-3xl font-bold mt-2 rev">Achievements &amp; discoveries</h2>
+
+    <!-- featured CVE -->
+    <div class="card mt-8 p-6 sm:p-8 rev" style="border-color:rgba(57,255,136,.5);box-shadow:0 0 60px -20px rgba(57,255,136,.35)">
+      <div class="flex flex-wrap items-center gap-2 mono tag">
+        <span class="px-2 py-1 rounded" style="background:rgba(57,255,136,.12);color:var(--ac)">● published</span>
+        <span class="px-2 py-1 rounded" style="background:#161c25;color:var(--mu)">CWE-183</span>
+        <span class="px-2 py-1 rounded" style="background:#161c25;color:var(--mu)">TR-26-1500</span><span class="px-2 py-1 rounded" style="background:rgba(255,59,78,.12);color:var(--rd)">CVSS 7.0 HIGH</span><span class="px-2 py-1 rounded" style="background:#161c25;color:var(--mu)">fixed in 2.0.1</span>
+      </div>
+      <h3 class="mono text-3xl sm:text-5xl font-bold mt-4 glow" style="color:var(--ac)">CVE-2026-16478</h3>
+      <p class="mt-3 text-lg font-semibold">pardus-nvidia-installer — Permissive List of Allowed Inputs</p>
+      <p class="mt-3 max-w-3xl leading-relaxed" style="color:#b7c2cf">A permissive allow-list flaw in the Pardus NVIDIA installer, developed by TÜBİTAK BİLGEM, allows local privilege escalation in versions before 2.0.1. Vector: <span class="mono text-sm">CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H</span>. Announced as an official advisory by the Presidency of Türkiye’s Cybersecurity Directorate.</p>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <a class="btn btn-p" target="_blank" rel="noopener" href="https://www.cve.org/CVERecord?id=CVE-2026-16478">CVE record ↗</a>
+        <a class="btn" target="_blank" rel="noopener" href="https://siberguvenlik.gov.tr/guvenlik-bildirimleri/detay/tr-26-1500">Official advisory ↗</a>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4 mt-4">
+      <div class="card p-6 rev">
+        <div class="text-3xl">🥈</div>
+        <p class="mono tag mt-3" style="color:var(--ac)">TEKNOFEST 2025</p>
+        <h3 class="font-bold text-lg mt-1">Pardus Bug Hunting — 2nd place</h3>
+        <p class="text-sm mt-2 leading-relaxed" style="color:var(--mu)">I found a local privilege escalation in Pardus Software Center and finished second in the “Suggestion / Bug Detection” category.</p>
+        <a class="btn mt-4" target="_blank" rel="noopener" href="https://drdogrulama.sanayi.gov.tr/en/verify/03764608096869">Verify certificate ↗</a>
+      </div>
+      <div class="card p-6 rev">
+        <div class="text-3xl">🛡️</div>
+        <p class="mono tag mt-3" style="color:var(--ac)">CVE-2026-15599 · LOW 3.3</p>
+        <h3 class="font-bold text-lg mt-1">pardus-domain-joiner</h3>
+        <p class="text-sm mt-2 leading-relaxed" style="color:var(--mu)">My first CVE: unverified ownership (CWE-283) leading to arbitrary process termination, fixed in 0.5.5 and published on 6 Aug 2026. Filed while competing in Pardus 2026.</p>
+        <a class="btn mt-4" target="_blank" rel="noopener" href="https://www.cve.org/CVERecord?id=CVE-2026-15599">CVE record ↗</a>
+      </div>
+      <div class="card p-6 rev" style="border-style:dashed">
+        <div class="text-3xl">⚡</div>
+        <p class="mono tag mt-3" style="color:var(--mu)">coming soon</p>
+        <h3 class="font-bold text-lg mt-1">Next discovery</h3>
+        <p class="text-sm mt-2 leading-relaxed" style="color:var(--mu)">Certificates, TryHackMe / HTB ranks and new CVEs will be added here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="yol" class="sec">
+  <div class="max-w-3xl mx-auto px-5">
+    <p class="mono text-sm rev" style="color:var(--ac)">03 // roadmap</p>
+    <h2 class="text-3xl font-bold mt-2 mb-8 rev">Timeline</h2>
+    <div class="tl pl-6 space-y-8">
+      <div class="rev relative"><i class="absolute -left-[31px] top-1 w-3 h-3 rounded-full" style="background:var(--ac)"></i><p class="mono text-sm" style="color:var(--ac)">2025</p><p class="font-semibold">TEKNOFEST: LPE finding, 2nd place</p><p class="text-sm" style="color:var(--mu)">A privilege escalation flaw in Pardus Software Center, found at 14.</p></div>
+      <div class="rev relative"><i class="absolute -left-[31px] top-1 w-3 h-3 rounded-full" style="background:var(--ac)"></i><p class="mono text-sm" style="color:var(--ac)">2026</p><p class="font-semibold">Pardus 2026 and CVE-2026-15599</p><p class="text-sm" style="color:var(--mu)">No podium this time, but the finding became my first CVE (Low, published Aug 6).</p></div>
+      <div class="rev relative"><i class="absolute -left-[31px] top-1 w-3 h-3 rounded-full" style="background:var(--ac);box-shadow:0 0 14px var(--ac)"></i><p class="mono text-sm" style="color:var(--ac)">Now</p><p class="font-semibold">CVE-2026-16478 announced</p><p class="text-sm" style="color:var(--mu)">High severity (CVSS 7.0), published Nov 10, 2026. More to come.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="elaqe" class="sec">
+  <div class="max-w-3xl mx-auto px-5 text-center rev">
+    <p class="mono text-sm" style="color:var(--ac)">04 // contact</p>
+    <h2 class="text-3xl sm:text-4xl font-bold mt-2">Let’s build a safer internet together</h2>
+    <p class="mt-4" style="color:var(--mu)">For collaboration, security research, or just a chat, drop me a message.</p>
+    <a data-s="github" target="_blank" rel="noopener" class="btn btn-p mt-6">Message me on GitHub →</a>
+  </div>
+</section>
+</main>
+
+<footer style="border-top:1px solid var(--line)">
+  <div class="max-w-6xl mx-auto px-5 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="mono text-xs" style="color:var(--mu)">© 2026 Namiq Bağırzadə · <span style="color:var(--ac)">redbith</span> · made with ♥</p>
+    <div class="flex gap-3">
+      <a data-s="github" target="_blank" rel="noopener" aria-label="GitHub" class="btn"><svg class="w-4 h-4"><use href="#i-gh"/></svg></a>
+      <a data-s="x" target="_blank" rel="noopener" aria-label="X" class="btn"><svg class="w-4 h-4"><use href="#i-x"/></svg></a>
+      <a data-s="ig" target="_blank" rel="noopener" aria-label="Instagram" class="btn"><svg class="w-4 h-4"><use href="#i-ig"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-gh" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23Zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64Z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></symbol>
+</svg>
+
+<script>
+// Sosial linklər — Instagram və X istifadəçi adlarını özünüzünkü ilə dəyişin
+const SOCIAL={github:'https://github.com/redbith',x:'https://x.com/redbith',ig:'https://instagram.com/redbith'};
+document.querySelectorAll('[data-s]').forEach(a=>a.href=SOCIAL[a.dataset.s]);
+
+// Yazı effekti
+const roles=['Vulnerability Researcher','Pentester','CVE Author','Linux Security'];
+let ri=0,ci=0,del=false;const t=document.getElementById('typed');
+(function tick(){const w=roles[ri];ci+=del?-1:1;t.textContent=w.slice(0,ci);let d=del?35:80;
+if(!del&&ci===w.length){del=true;d=1400}else if(del&&ci===0){del=false;ri=(ri+1)%roles.length;d=300}setTimeout(tick,d)})();
+
+// Scroll reveal + sayğac
+const cnt=el=>{const n=+el.dataset.n,p=el.dataset.pre||'';if(el.dataset.dec){el.textContent=n.toFixed(1);return}let i=0;const s=setInterval(()=>{i++;el.textContent=p+i;if(i>=n)clearInterval(s)},900/n)};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('[data-n]').forEach(cnt);io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+
+// Matrix yağışı
+const cv=document.getElementById('matrix'),cx=cv.getContext('2d');let cols,drops;
+function rs(){cv.width=innerWidth;cv.height=innerHeight;cols=Math.floor(cv.width/16);drops=Array(cols).fill(0).map(()=>Math.random()*-50)}
+rs();addEventListener('resize',rs);
+const ch='01{}<>/;$#%&*=+ABCDEF';
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setInterval(()=>{
+cx.fillStyle='rgba(7,9,13,.12)';cx.fillRect(0,0,cv.width,cv.height);cx.fillStyle='#39ff88';cx.font='14px monospace';
+drops.forEach((y,i)=>{cx.fillText(ch[Math.random()*ch.length|0],i*16,y*16);drops[i]=y*16>cv.height&&Math.random()>.975?0:y+1})},60);
+</script>
+</body>
+</html>
